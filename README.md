@@ -16,23 +16,19 @@ WT-Abschlussprojekt
 * [ ] HTML/BS Warenkorb
 * [ ] HTML/BS Anmeldung
 * [ ] HTML/BS Registrierung
-* [ ] AJAX Navbar: see https://en.wikipedia.org/wiki/Ajax_(programming)
-* [ ] PHP Session manager: stores page and login info
-* [ ] PHP Cookie-manager: saves login info (see documentation)
-* [ ] MySQL Setup: User and product table
-* [ ] JS DB-interface: see documentation
-	* [ ] Regex whitelist for login and search
-	* [ ] Connect as guest, user or admin
-	* [ ] Search product by name (everyone)
+* [x] PHP Core: Initializes website, calls form data functions
+* [x] MySQL Setup: User and product table
+* [ ] MySQL Functions:
+	* [ ] Get products by category (everyone)
 		* [ ] Prep. statements: https://github.com/sidorares/node-mysql2/blob/master/documentation/Prepared-Statements.md
 	* [ ] Add product (admin)
 	* [ ] Edit product (admin)
 	* [ ] Delete product (admin)
-* [ ] PHP DB-interface: see documentation
-	* [ ] Regex whitelist for registration form
-	* [ ] Connection as guest
-	* [ ] Add new user with form data
-* [ ] JS Continuous search filter (calls search function of JS-DB-Interface)
+* [ ] JS Form whitelist: login, registration, search
+* [ ] PHP Form whitelist: login, registration, search
+* [ ] JS File upload
+* [ ] AJAX Navbar: see https://en.wikipedia.org/wiki/Ajax_(programming)
+* [ ] JS Continuous search filter
 * [ ] JS Cart manager: add/remove from cart, show/change count, show total, buy
 * [ ] Submission: Comment code, if necessary, create readme explaining setup, zip website including database
 	

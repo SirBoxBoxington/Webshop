@@ -1,17 +1,30 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <li><button class="btn navbar-brand btn-link" onclick="test();">Webshop</button></li>
+            <button class="btn navbar-brand btn-link">Webshop</button>
         </div>
         <ul class="nav navbar-nav">
-            <li><button class="btn navbar-btn btn-link" onclick="test();">Home</button></li>
-            <li><button class="btn navbar-btn btn-link" onclick="test();">Produkte</button></li>
-            <li><button class="btn navbar-btn btn-link" onclick="test();">Einkaufswagen</button></li>
-            <li><button class="btn navbar-btn btn-link" onclick="test();">Button</button></li>
+            <li><button type="submit" value="nav_home" class="btn navbar-btn btn-link">Home</button></li>
+            <li><button type="submit" value="nav_products" class="btn navbar-btn btn-link">Produkte</button></li>
+            <li><button type="submit" value="nav_cart" class="btn navbar-btn btn-link">Einkaufswagen</button></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><button class="btn navbar-btn btn-link";"><span class="glyphicon glyphicon-user"></span> Hallo, Benni!</button></li>
-            <li><button class="btn navbar-btn btn-link" onclick="test();"><span class="glyphicon glyphicon-log-in"></span> Login</button></li>
+            <?php
+            //If user is logged in
+            if($_SESSION['rank'] != 'guest'){
+                //Show first name
+                echo '<li><button class="btn navbar-btn btn-link"><span class="glyphicon glyphicon-user"></span> '
+                . 'Hallo, ' . $_SESSION['name'] . '</button></li>';
+                //Show logout button
+                echo '<li><button type="submit" value="nav_logout" class="btn navbar-btn btn-link"><span class="glyphicon glyphicon-log-out"></span> '
+                . 'Logout' . '</button></li>';
+            }
+            //If user is guest
+            else {
+                echo '<li><button type="submit" value="nav_home" class="btn navbar-btn btn-link"><span class="glyphicon glyphicon-log-in"></span> '
+                    . 'Login' . '</button></li>';
+            }
+            ?>
         </ul>
     </div>
 </nav>

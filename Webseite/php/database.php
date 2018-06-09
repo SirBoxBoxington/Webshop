@@ -8,7 +8,7 @@
 
 class database {
     private $DB_rank = 'guest';
-    private $DB_username = 'guest';
+    private $DB_username = 'Benni';
 
     public function getRank(){
         //TODO

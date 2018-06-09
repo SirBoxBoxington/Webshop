@@ -12,7 +12,7 @@ include 'database.php';
 // ---------- OPEN SESSION ----------
 
 //Set cookie lifetime to 1 minute
-session_set_cookie_params(360);
+session_set_cookie_params(60);
 //Start session
 session_start();
 
