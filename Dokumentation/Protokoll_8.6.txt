@@ -1,0 +1,4 @@
+-created database
+-created database-class-file
+-modified register so it works
+Login still default code- needs to be redone. Will do so tomorrow

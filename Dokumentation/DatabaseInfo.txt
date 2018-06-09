@@ -1,0 +1,11 @@
+DB-Name: shop
+
+tableNameForUsers: user
+tableNameForRecipes: rechnungen
+tableNameForProducts: produkte
+helpTable: produkte_rechnungen
+
+User contains: Username(Primary), PW(saved as hash),Anrede,Vorname,Nachname,email,PLZ,Ort,Adresse,IsAdmin,IsLdap in that order.
+Rechnungen contains: KaeuferUser(fk: references User_Username),Preis, RechnungsID(Primary)
+Produkte: ID,name,Preis
+Produkte_rechnungen: produkt_id,rechnung_id
