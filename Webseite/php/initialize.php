@@ -103,3 +103,41 @@ if (isset($_POST['product_add'])){
         exit('ERROR: Could not add product');
     }
 }
+
+// ---------- NAVBAR CONTENT CHANGE ----------
+
+//Home
+if(isset($_POST['nav_home'])){
+    //Set content to home
+    $_SESSION['content'] = 'home';
+    //Delete POST data to prevent staying on page
+    unset($_POST['nav_home']);
+}
+//Products
+else if(isset($_POST['nav_products'])){
+    //Set content to products
+    $_SESSION['content'] = 'products';
+    //Delete POST data to prevent staying on page
+    unset($_POST['nav_products']);
+}
+//Cart
+else if(isset($_POST['nav_cart'])){
+    //Set content to cart
+    $_SESSION['content'] = 'cart';
+    //Delete POST data to prevent staying on page
+    unset($_POST['nav_cart']);
+}
+//Login
+else if(isset($_POST['nav_login'])){
+    //Set content to login
+    $_SESSION['content'] = 'login';
+    //Delete POST data to prevent staying on page
+    unset($_POST['nav_login']);
+}
+//Register
+else if(isset($_POST['nav_register'])){
+    //Set content to register
+    $_SESSION['content'] = 'register';
+    //Delete POST data to prevent staying on page
+    unset($_POST['nav_register']);
+}
