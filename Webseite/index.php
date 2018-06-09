@@ -10,6 +10,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!-- Initialize DB -->
         <?php include "php/initialize.php"; ?>
+		<?php include "php/DBclass.php";?>
         <!-- Custom JS functions-->
         <script src="JS/nav.js"></script>
 	</head>
@@ -17,9 +18,13 @@
 			<div id="header">
 				<?php include "php/header.php"; ?>
 			</div>
+			<div>
+			<!--<?php include "php/register.php";?>Just for testing atm-->
+			</div>
 			<div id="content">
 				<?php include "content/" . $_SESSION['content'] . ".php"; ?>
 			</div>
+			
 		</div>
 	</body>
 </html>
