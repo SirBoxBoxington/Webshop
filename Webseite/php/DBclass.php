@@ -324,6 +324,42 @@ public function disconnect()
 	$db->close();
 	}
 }
+public function addProduct()
+{
+	$this->connect();
+	if (mysqli_connect_errno() == 0) {
+
+		if($stmt = $this->db->prepare("INSERT INTO produkte VALUES (NULL,?,?,?)"))
+		{
+		$stmt->bind_param("sds",$name, $price, $link);
+		
+		$price= (isset($_POST['priceReg']))?$_POST['priceReg']:NULL;
+		$name= (isset($_POST['productReg']))?$_POST['productReg']:NULL;
+		$link = (isset($_POST['linkReg']))?$_POST['linkReg']:NULL;
+		
+		}else
+		{
+			 $error =$this->db->errno . ' ' . $this->db->error;
+			 echo $error;
+		}
+		
+        ?> <script language="javascript"> alert("con established") </script> <?php
+
+        if ($stmt->execute() === TRUE) 
+        {
+            echo "Erfolgreich hinzugefügt";
+            ?> <script language="javascript"> alert("written") </script> <?php
+        } 
+    }
+    else 
+    {
+        echo 'Die Datenbank konnte nicht erreicht werden. Folgender Fehler
+        trat auf:' .mysqli_connect_errno(). ' : ' .mysqli_connect_error();
+        ?> <script language="javascript"> alert("no con") </script> <?php
+    }
+  $this->disconnect();// Datenbankverbindung schließen
+	}
+
 
 }
 
