@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <links>
     <link>
-        <action>
-            nav_home
-        </action>
-        <description>
-            Home
-        </description>
+        <action>home</action>
+        <description>Home</description>
     </link>
     <link>
-        <action>
-            nav_products
-        </action>
-        <description>
-            Produkte bearbeiten
-        </description>
+        <action>products</action>
+        <description>Produkte Bearbeiten</description>
     </link>
     <link>
-        <action>
-            nav_cart
-        </action>
-        <description>
-            Einkaufswagen
-        </description>
+        <action>cart</action>
+        <description>Einkaufswagen</description>
     </link>
 </links>
