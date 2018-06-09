@@ -4,9 +4,16 @@
             <button class="btn navbar-brand btn-link">Webshop</button>
         </div>
         <ul class="nav navbar-nav">
-            <li><button type="submit" value="nav_home" class="btn navbar-btn btn-link">Home</button></li>
-            <li><button type="submit" value="nav_products" class="btn navbar-btn btn-link">Produkte</button></li>
-            <li><button type="submit" value="nav_cart" class="btn navbar-btn btn-link">Einkaufswagen</button></li>
+            <?php   //Links generated from XML file
+            //Load xml file
+            $nav_links = simplexml_load_file('./xml/' . $_SESSION['rank'].  '.xml');
+            //Display links
+            foreach ($nav_links->link as $link){
+                echo '<li><button type="submit" value="' . $link->action
+                    . '" class="btn navbar-btn btn-link"> ' . $link->description
+                    . '</button></li>';
+            }
+            ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <?php
