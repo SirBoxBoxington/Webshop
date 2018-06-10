@@ -3,6 +3,7 @@ class DB
 { 
    
 public $db;
+
 public function connect()
 {
 $host     =   "localhost"; 
@@ -37,17 +38,17 @@ public function registerUser()
 			 echo $error;
 		}
 		
-        ?> <script language="javascript"> alert("con established") </script> <?php
+        ?> <script language="javascript"> alert("con established"); </script> <?php
 
         if ($stmt->execute() === TRUE) 
         {
             echo "Erfolgreich rergistriert.";
-            ?> <script language="javascript"> alert("written") </script> <?php
+            ?> <script language="javascript"> alert("written"); </script> <?php
         } 
         else 
         {
-            echo '<script language="javascript">alert("Error: "'. $username .'" bereits vergeben.")</script>';
-            ?> <script language="javascript"> alert("not written") </script> <?php
+            echo '<script language="javascript">alert("Name already in use")</script>';
+            ?> <script language="javascript"> alert("not written"); </script> <?php
         }
     }
     else 
@@ -57,9 +58,9 @@ public function registerUser()
         ?> <script language="javascript"> alert("no con") </script> <?php
     }
   $this->disconnect();// Datenbankverbindung schließen
-}
+	}
 
-public function checkLogin()
+/*public function checkLogin()
 {
 	//If the HTTPS is not found to be "on"
 		if(!isset($_SERVER["HTTPS"]) || $_SERVER["HTTPS"] != "on")
@@ -110,7 +111,7 @@ public function checkLogin()
 
 			if (mysqli_connect_errno() == 0) 
 			{
-				$user_einlesen = "SELECT username FROM WTUser WHERE username='$username'";	//count(*) geht nicht
+				$user_einlesen = "SELECT username FROM User WHERE username='$username'";	//count(*) geht nicht
 				//$result = $db->query($user_einlesen);
 				//$count = $result->num_rows;
 
@@ -260,7 +261,7 @@ public function checkLogin()
 							/*for ($i=0; $ii<$info[$i]["count"]; $ii++){
 								$data = $info[$i][$ii];
 								echo $data.":  ".$info[$i][$data][0]."\n<br>";
-							}*/
+							}
 							$data = $info[0][0];
 							$Vorname = $info[0][$data][0];
 							$data = $info[0][1];
@@ -316,7 +317,7 @@ public function checkLogin()
 			}
     		$this->disconnect(); // Datenbankverbindung schließen
 		}
-}
+}*/
 public function disconnect()
 {
 	if(isset($db))
@@ -360,6 +361,62 @@ public function addProduct()
   $this->disconnect();// Datenbankverbindung schließen
 	}
 
+    public function getRank(){
+        //TODO
+        return $this->DB_rank;
+    }
+    public function getUserName(){
+        //TODO
+        return $this->DB_username;
+    }
+	public function checkLogin()
+	{
+		$this->connect();
+		if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form 
+     if(mysqli_connect_errno()) {
+     printf("Connect failed: %s\n", mysqli_connect_error());
+     exit();
+    }
+      $myusername = mysqli_real_escape_string($this->db,$_POST['login_usr']);
+      $mypassword = mysqli_real_escape_string($this->db,$_POST['login_pwd']); 
+      $pwdhash= md5($mypassword);
+	  
+	  
+      $sql = "SELECT username FROM User WHERE username = '$myusername' and PW = '$pwdhash'";
+	  $rank = "SELECT IsAdmin FROM  User WHERE username = '$myusername' and PW = '$pwdhash'";
+      $result = mysqli_query($this->db,$sql);
+	  if (!$result) {
+    printf("Error: %s\n", mysqli_error($this->db));
+    exit();
+}
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $count = mysqli_num_rows($result);
+      
+      // If result matched $myusername and $mypassword, table row must be 1 row
+		
+      if($count == 1) {
+         $_SESSION['name'] = $myusername;
+		 if($rank==true)
+		 {
+         $_SESSION['rank'] = 'admin';
+		 }else
+		 {
+			  $_SESSION['rank'] = 'user';
+		 }
+		echo "Erfolgreich eingeloggt.";
+		$_SESSION['content'] = 'home';
+       $referrer = $_SERVER['HTTP_REFERER']; 
+		header ("Refresh: 2;URL='$referrer'"); 
+      }else {
+		echo "Username or Password wrong!";
+		$referrer = $_SERVER['HTTP_REFERER']; 
+		header ("Refresh: 2;URL='$referrer'"); 
+		}
+  
+		}
+		$this->disconnect();
+	}
 
 }
 

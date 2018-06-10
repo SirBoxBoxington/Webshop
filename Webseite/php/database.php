@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Benni
- * Date: 09/06/2018
- * Time: 11:11
- */
 
 class database {
     private $DB_rank = 'guest';

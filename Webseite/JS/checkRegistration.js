@@ -10,7 +10,7 @@ function checkRegistration()//formular
 		document.getElementById('username').style.border="solid red";
 	}
 	var currentCheck=document.getElementById('password').value;//Pw check
-	var regex= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])(?!.*\s)/;
+	var regex= /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 	
 	if(currentCheck.match(regex)==false||currentCheck.length<5)
 	{

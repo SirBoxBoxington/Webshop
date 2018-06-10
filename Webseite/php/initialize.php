@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Benni
- * Date: 08/06/2018
- * Time: 14:57
- */
 
-include 'database.php';
+
+include 'DBclass.php';
 
 
 // ---------- OPEN SESSION ----------
@@ -68,18 +63,18 @@ else {
 
 // ---------- CONNECT TO DATABASE ----------
 
-$connection = new database();
+/*$connection = new DB();
 if ($connection->connect($_SESSION['login_usr'], $_SESSION['login_pwd'])){
     //Connection successful
     $_SESSION['rank'] = $connection->getRank();
     $_SESSION['name'] = $connection->getUserName();
 }
-else exit("Could not connect to database.");
+else exit("Could not connect to database.");*/
 
 
 // ---------- REGISTER ----------
 
-if (isset($_POST['register'])){
+/*if (isset($_POST['register'])){
     //TODO: Check form data
     //Attempt to register
     if ($connection->register($_POST['register_gender'],
@@ -95,7 +90,7 @@ if (isset($_POST['register'])){
         //
     }
     else exit('ERROR: Registration failed');
-}
+}*/
 
 // ---------- ADD PRODUCT ----------
 if (isset($_POST['product_add'])){
