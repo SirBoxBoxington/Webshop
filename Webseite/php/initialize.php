@@ -16,10 +16,37 @@ session_set_cookie_params(60);
 //Start session
 session_start();
 
+// ---------- SET PAGE CONTENT ----------
+
+//Load from get
+if(isset($_GET['navigate'])){
+    //Set content to home
+    $_SESSION['content'] = $_GET['navigate'];
+    //Unset get to allow page change by changing 'content'
+    unset($_GET['navigate']);
+}
+//Stay on page if page was not changed
+else if (isset($_SESSION['content'])){
+    //Noting to do
+}
+//Else, default to home
+else {
+    $_SESSION['content'] = 'home';
+}
+
 // ---------- SET LOGIN DATA ----------
 
+//On logout, log in as guest
+if(isset($_SESSION['content']) && $_SESSION['content'] == 'logout'){
+    //Set user to guest
+    $_SESSION['login_usr'] = 'guest';
+    $_SESSION['login_pwd'] = 'guest';
+    //Delete cookie
+    unset($_COOKIE['login_usr']);
+    unset($_COOKIE['login_pwd']);
+}
 //Load from form
-if (isset($_POST['login'])){
+else if (isset($_POST['login'])){
     //TODO: Check form data
     $_SESSION['login_usr'] = $_POST['login_usr'];
     $_SESSION['login_pwd'] = $_POST['login_pwd'];
@@ -39,21 +66,6 @@ else {
     $_SESSION['login_pwd'] = 'guest';
 }
 
-// ---------- SET PAGE CONTENT REFERENCE ----------
-
-//Load from POST
-if (isset($_POST['navigate'])){
-    $_SESSION['content'] = $_POST['navigate_content'];
-}
-//Stay on page if session is ongoing
-else if (isset($_SESSION['content'])){
-    //Noting to do
-}
-//Else, default to home
-else {
-    $_SESSION['content'] = 'home';
-}
-
 // ---------- CONNECT TO DATABASE ----------
 
 $connection = new database();
@@ -70,7 +82,7 @@ else exit("Could not connect to database.");
 if (isset($_POST['register'])){
     //TODO: Check form data
     //Attempt to register
-    if ($connection->register($_POST['register_honorific'],
+    if ($connection->register($_POST['register_gender'],
         $_POST['register_name'],
         $_POST['register_surname'],
         $_POST['register_address'],
@@ -102,13 +114,4 @@ if (isset($_POST['product_add'])){
         //Failure
         exit('ERROR: Could not add product');
     }
-}
-
-// ---------- SET CONTENT IF CHANGED BY NAVBAR ----------
-
-if(isset($_GET['navigate'])){
-    //Set content to home
-    $_SESSION['content'] = $_GET['navigate'];
-    //Unset get to allow page change by changing 'content'
-    unset($_GET['navigate']);
 }
