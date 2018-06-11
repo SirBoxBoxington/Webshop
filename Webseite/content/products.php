@@ -16,3 +16,8 @@
     </div>
     <script> updateProducts() </script>
 </div>
+<?php
+ include 'php/addProduct.php';
+$db = new DB();
+$db->getProducts();
+?>

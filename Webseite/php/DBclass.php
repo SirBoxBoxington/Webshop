@@ -72,13 +72,15 @@ public function addProduct()
 	$this->connect();
 	if (mysqli_connect_errno() == 0) {
 
-		if($stmt = $this->db->prepare("INSERT INTO produkte VALUES (NULL,?,?,?)"))
+		if($stmt = $this->db->prepare("INSERT INTO produkte VALUES (NULL,?,?,?,?,?)"))
 		{
-		$stmt->bind_param("sds",$name, $price, $link);
+		$stmt->bind_param("sssds",$name, $desc, $kat, $price, $link);
 		
 		$price= (isset($_POST['priceReg']))?$_POST['priceReg']:NULL;
 		$name= (isset($_POST['productReg']))?$_POST['productReg']:NULL;
 		$link = (isset($_POST['linkReg']))?$_POST['linkReg']:NULL;
+		$kat = (isset($_POST['descReg']))?$_POST['descReg']:NULL;
+		$desc= (isset($_POST['katReg']))?$_POST['katReg']:NULL;
 		
 		}else
 		{
@@ -162,6 +164,27 @@ public function addProduct()
   
 		}
 		
+	}
+	public function getProducts()
+	{
+		$this->connect();
+		$returnArray = array();
+		$sql = "SELECT * from Produkte";
+		if($result = mysqli_query($this->db,$sql))
+		{
+		
+			while ($obj = $result->fetch_object()) {
+			$returnArray[] = $obj;
+			}
+			$result->close();
+	print_r($returnArray);
+    }
+	
+	$this->disconnect();
+
+		
+		
+		 
 	}
 
 }
