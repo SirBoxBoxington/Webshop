@@ -37,28 +37,23 @@ if(isset($_SESSION['content']) && $_SESSION['content'] == 'logout'){
     $_SESSION['name'] = 'guest';
     $_SESSION['rank'] = 'guest';
     //Delete cookie
-    unset($_COOKIE['login_usr']);
-    unset($_COOKIE['login_pwd']);
+    unset($_COOKIE['name']);
+    unset($_COOKIE['rank']);
 }
-//Load from form
-else if (isset($_POST['login'])){
-    //TODO: Check form data
-    $_SESSION['login_usr'] = $_POST['login_usr'];
-    $_SESSION['login_pwd'] = $_POST['login_pwd'];
-}
+
 //Else, use data already in session
-else if (isset($_SESSION['login_usr']) && isset($_SESSION['login_pwd'])){
+else if (isset($_SESSION['name']) && isset($_SESSION['rank'])){
     //Noting to do
 }
 //Else, load from cookie
-else if (isset($_COOKIE['login_usr']) && isset($_COOKIE['login_pwd'])){
-    $_SESSION['login_usr'] = $_COOKIE['login_usr'];
-    $_SESSION['login_pwd'] = $_COOKIE['login_pwd'];
+else if (isset($_COOKIE['name']) && isset($_COOKIE['rank'])){
+    $_SESSION['name'] = $_COOKIE['name'];
+    $_SESSION['rank'] = $_COOKIE['rank'];
 }
 //Else, use default login data (guest)
 else {
-    $_SESSION['login_usr'] = 'guest';
-    $_SESSION['login_pwd'] = 'guest';
+    $_SESSION['name'] = 'guest';
+    $_SESSION['rank'] = 'guest';
 }
 
 // ---------- CONNECT TO DATABASE ----------
