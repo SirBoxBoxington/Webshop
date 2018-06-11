@@ -180,11 +180,48 @@ public function addProduct()
 	print_r($returnArray);
     }
 	
-	$this->disconnect();
-
-		
-		
+		$this->disconnect();
+		return $returnArray;
 		 
+	}
+	public function filterProductsByKategorie($kategorie)
+	{
+		$sql = "SELECT * from Produkte WHERE kategory ='$kategorie'";
+			$this->connect();
+		$returnArray = array();
+		if($result = mysqli_query($this->db,$sql))
+		{
+		
+			while ($obj = $result->fetch_object()) {
+			$returnArray[] = $obj;
+			}
+			$result->close();
+	print_r($returnArray);
+    }
+	
+		$this->disconnect();
+		return $returnArray;
+		 
+	}
+	public function filterProductsByName($name)
+	{
+		$sql = "SELECT * from Produkte WHERE name like '%$name%'";
+			$this->connect();
+		$returnArray = array();
+		if($result = mysqli_query($this->db,$sql))
+		{
+		
+			while ($obj = $result->fetch_object()) {
+			$returnArray[] = $obj;
+			}
+			$result->close();
+	print_r($returnArray);
+    }
+	
+		$this->disconnect();
+		return $returnArray;
+		 
+	}
 	}
 
 }
