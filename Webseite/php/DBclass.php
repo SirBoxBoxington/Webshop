@@ -165,25 +165,22 @@ public function addProduct()
 		}
 		
 	}
-	public function getProducts()
+		public function getProducts()
 	{
 		$this->connect();
 		$returnArray = array();
 		$sql = "SELECT * from Produkte";
 		if($result = mysqli_query($this->db,$sql))
 		{
-		
-			while ($obj = $result->fetch_object()) {
-			$returnArray[] = $obj;
-			}
-			$result->close();
-	print_r($returnArray);
-    }
-	
-		$this->disconnect();
-		return $returnArray;
-		 
+            $this->disconnect();
+            return $result;
+        }
+        $this->disconnect();
+		return NULL;
 	}
+	
+	
+	
 	public function filterProductsByKategorie($kategorie)
 	{
 		$sql = "SELECT * from Produkte WHERE kategory ='$kategorie'";
@@ -191,17 +188,11 @@ public function addProduct()
 		$returnArray = array();
 		if($result = mysqli_query($this->db,$sql))
 		{
-		
-			while ($obj = $result->fetch_object()) {
-			$returnArray[] = $obj;
-			}
-			$result->close();
-	print_r($returnArray);
-    }
-	
-		$this->disconnect();
-		return $returnArray;
-		 
+            $this->disconnect();
+            return $result;
+        }
+        $this->disconnect();
+		return NULL;
 	}
 	public function filterProductsByName($name)
 	{
@@ -210,20 +201,12 @@ public function addProduct()
 		$returnArray = array();
 		if($result = mysqli_query($this->db,$sql))
 		{
-		
-			while ($obj = $result->fetch_object()) {
-			$returnArray[] = $obj;
-			}
-			$result->close();
-	print_r($returnArray);
-    }
-	
-		$this->disconnect();
-		return $returnArray;
-		 
+            $this->disconnect();
+            return $result;
+        }
+        $this->disconnect();
+		return NULL;
 	}
 	}
-
-}
 
 ?>
