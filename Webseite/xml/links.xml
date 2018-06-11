@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<links>
+    <link>
+        <action>home</action>
+        <description>Home</description>
+        <visible_to_user/>
+        <visible_to_admin/>
+    </link>
+    <link>
+        <action>products</action>
+        <description>Produkte</description>
+        <visible_to_user/>
+    </link>
+    <link>
+        <action>products</action>
+        <description>Produkte bearbeiten</description>
+        <visible_to_admin/>
+    </link>
+    <link>
+        <action>cart</action>
+        <description>Einkaufswagen ()</description>
+        <visible_to_user/>
+        <visible_to_admin/>
+    </link>
+</links>
