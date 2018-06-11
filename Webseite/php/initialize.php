@@ -34,8 +34,8 @@ else {
 //On logout, log in as guest
 if(isset($_SESSION['content']) && $_SESSION['content'] == 'logout'){
     //Set user to guest
-    $_SESSION['login_usr'] = 'guest';
-    $_SESSION['login_pwd'] = 'guest';
+    $_SESSION['name'] = 'guest';
+    $_SESSION['rank'] = 'guest';
     //Delete cookie
     unset($_COOKIE['login_usr']);
     unset($_COOKIE['login_pwd']);

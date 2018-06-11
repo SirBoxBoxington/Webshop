@@ -9,8 +9,6 @@
             $nav_links = simplexml_load_file('./xml/links.xml');
             //Display links
             //Admin
-            $_SESSION['rank'] = 'user';
-            $_SESSION['name'] = 'Benni';
             if((isset($_SESSION['rank']) && $_SESSION['rank'] == 'admin')){
                 foreach ($nav_links->link as $link){
                     //Show only links that have the visible to admin property
@@ -34,7 +32,7 @@
         <ul class="nav navbar-nav navbar-right">
             <?php
             //If user is logged in
-            if(isset($_SESSION['rank'])){
+            if($_SESSION['rank']!='guest'){
                 //Show first name
                 echo '<li class="btn navbar-btn btn-link"><span class="glyphicon glyphicon-user"></span> '
                     . 'Hallo, ' . $_SESSION['name'] . '</li>';
